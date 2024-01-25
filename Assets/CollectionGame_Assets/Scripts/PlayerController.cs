@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     public float speed = 2f;
+    public float jumpForce = 5f;
     Rigidbody rigidBody;
 
     // Start is called before the first frame update
@@ -17,7 +18,11 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            if (transform.position.y < 1.1f) {
+                rigidBody.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+            }
+        }
     }
 
     private void FixedUpdate() {
@@ -26,6 +31,8 @@ public class PlayerController : MonoBehaviour {
 
         Vector3 forceVector = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rigidBody.AddForce(forceVector * speed);
+
+       
     } 
     
 
