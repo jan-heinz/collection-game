@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PickupBehavior : MonoBehaviour {
+
+    public static int pickupCount = 0;
     // Start is called before the first frame update
     void Start() {
-
+        pickupCount++;
+        Debug.Log("Pickup count: " + pickupCount);
     }
 
     // Update is called once per frame
@@ -21,6 +24,15 @@ public class PickupBehavior : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         Debug.Log(other.gameObject.name + " triggered me");
         Destroy(gameObject);
+    }
+
+    private void OnDestroy() {
+        pickupCount--;
+        Debug.Log("Pickup remaining: " + pickupCount);
+
+        if (pickupCount <= 0) {
+            Debug.Log("You win!");
+        }
     }
 }
 
