@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateObject : MonoBehaviour
-{
+public class RotateObject : MonoBehaviour {
+
+    public float rotationAmount = 45f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,7 @@ public class RotateObject : MonoBehaviour
     void Update()
     {
         // rotate the pickups around the y axis smoothly
+        transform.Rotate(Vector3.up * rotationAmount * Time.deltaTime);
         // rotationAmount should be specified in the inspector
     }
 }

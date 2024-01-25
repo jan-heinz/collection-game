@@ -16,11 +16,11 @@ public class PickupBehavior : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision) {
         Debug.Log(collision.gameObject.name + " hit me!");
-        // Destroy(gameObject);
     }
 
     void OnTriggerEnter(Collider other) {
         Debug.Log(other.gameObject.name + " triggered me");
+        Destroy(gameObject);
     }
 }
 
