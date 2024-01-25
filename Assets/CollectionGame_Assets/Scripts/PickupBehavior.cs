@@ -6,6 +6,8 @@ using UnityEngine;
 public class PickupBehavior : MonoBehaviour {
 
     public static int pickupCount = 0;
+
+    public AudioClip pickupSFX;
     // Start is called before the first frame update
     void Start() {
         pickupCount++;
@@ -23,6 +25,7 @@ public class PickupBehavior : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) {
         Debug.Log(other.gameObject.name + " triggered me");
+        AudioSource.PlayClipAtPoint(pickupSFX, Camera.main.transform.position);
         Destroy(gameObject);
     }
 

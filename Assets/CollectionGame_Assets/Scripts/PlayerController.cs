@@ -7,12 +7,14 @@ public class PlayerController : MonoBehaviour {
     public float speed = 2f;
     public float jumpForce = 5f;
     Rigidbody rigidBody;
+    AudioSource jumpSFX;
 
     // Start is called before the first frame update
     void Start()
     {
         // get a reference to the rigidbody component
         rigidBody = GetComponent<Rigidbody>();
+        jumpSFX = GetComponent<AudioSource>();
         //rigidBody.AddForce(transform.forward * 5);
     }
 
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (transform.position.y < 1.1f) {
                 rigidBody.AddForce(0, jumpForce, 0, ForceMode.Impulse);
+                jumpSFX.Play();
             }
         }
     }

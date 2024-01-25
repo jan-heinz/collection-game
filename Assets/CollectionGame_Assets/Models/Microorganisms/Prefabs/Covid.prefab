@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4765f1847ef74f4e99fc2d8b18bb2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSFX: {fileID: 8300000, guid: f03af03b0fb33ef41967e4cb01936cf9, type: 3}
 --- !u!114 &1050778401503609414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,3 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7074466d627cbce4682624d5e920baa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationAmount: 45
