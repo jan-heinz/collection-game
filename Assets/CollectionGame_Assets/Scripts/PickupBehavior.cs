@@ -26,9 +26,14 @@ public class PickupBehavior : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        Debug.Log(other.gameObject.name + " triggered me");
-        AudioSource.PlayClipAtPoint(pickupSFX, Camera.main.transform.position);
-        Destroy(gameObject);
+        if (other.CompareTag("Player")) {
+            // `Debug.Log(other.gameObject.name + " triggered me");
+            AudioSource.PlayClipAtPoint(pickupSFX, Camera.main.transform.position);
+        
+            gameObject.GetComponent<Animator>().SetTrigger("pickUpDestroyed");
+            Destroy(gameObject, 2);
+        }
+      
     }
 
     private void OnDestroy() {
