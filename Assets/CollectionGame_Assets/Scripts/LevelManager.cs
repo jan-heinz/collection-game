@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour {
     public Text gameText;
     public static bool isGameOver = false;
     public AudioClip gameOverSFX;
+    public AudioClip gameWonSFX;
     
     float countDown;
     // Start is called before the first frame update
@@ -47,7 +48,7 @@ public class LevelManager : MonoBehaviour {
         gameText.text = "Game Over!";
         gameText.gameObject.SetActive(true);
 
-        Camera.main.GetComponent<AudioSource>().pitch = 1;
+        Camera.main.GetComponent<AudioSource>().pitch = 2;
         AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
     }
 
@@ -55,5 +56,8 @@ public class LevelManager : MonoBehaviour {
         isGameOver = true;
         gameText.text = "You win!";
         gameText.gameObject.SetActive(true);
+        
+        Camera.main.GetComponent<AudioSource>().pitch = 2;
+        AudioSource.PlayClipAtPoint(gameWonSFX, Camera.main.transform.position);
     }
 }

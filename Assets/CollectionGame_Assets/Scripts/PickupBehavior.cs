@@ -37,7 +37,7 @@ public class PickupBehavior : MonoBehaviour {
             if (pickupCount <= 0) {
                 Debug.Log("You win!"); 
                 
-                // LevelBeat()
+                FindObjectOfType<LevelManager>().LevelBeat();
             }
         }
     }
