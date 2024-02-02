@@ -30,11 +30,15 @@ public class PickupBehavior : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        pickupCount--;
-        Debug.Log("Pickup remaining: " + pickupCount);
+        if (!LevelManager.isGameOver) {
+            pickupCount--;
+            Debug.Log("Pickup remaining: " + pickupCount);
 
-        if (pickupCount <= 0) {
-            Debug.Log("You win!");
+            if (pickupCount <= 0) {
+                Debug.Log("You win!"); 
+                
+                // LevelBeat()
+            }
         }
     }
 }

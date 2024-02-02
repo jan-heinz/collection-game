@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour {
 
     public float levelDuration = 10.0f;
     public Text timerText;
+    public static bool isGameOver = false;
+    
     float countDown;
     // Start is called before the first frame update
     void Start() {
@@ -19,13 +21,16 @@ public class LevelManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (countDown > 0) {
-            countDown -= Time.deltaTime;
-        }
-        else {
-            countDown = 0.0f;
-        }
-        SetTimerText();
+        if (!isGameOver) {
+            if (countDown > 0) {
+                countDown -= Time.deltaTime;
+            } else {
+                countDown = 0.0f;
+                isGameOver = true;
+                // LevelLost()
+            } 
+        } 
+        SetTimerText(); 
     }
 
     void OnGUI() {

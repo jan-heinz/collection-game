@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour {
     public float speed = 2f;
@@ -29,11 +31,18 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        if (!LevelManager.isGameOver) {
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 forceVector = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        rigidBody.AddForce(forceVector * speed);
+            Vector3 forceVector = new Vector3(moveHorizontal, 0.0f, moveVertical);
+            rigidBody.AddForce(forceVector * speed);
+        }
+        else {
+            rigidBody.velocity = Vector3.zero;
+            rigidBody.angularVelocity = Vector3.zero;
+        }
+       
 
        
     } 
