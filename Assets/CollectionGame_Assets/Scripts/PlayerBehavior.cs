@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBehavior : MonoBehaviour
-{
+public class PlayerBehavior : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +15,16 @@ public class PlayerBehavior : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
+    private void OnCollisionEnter(Collision collision) {
         // if the player is hit by an enemy, end the game
         // destroy the player.
+        if (collision.gameObject.CompareTag("Enemy")) {
+            // end of game
+            FindObjectOfType<LevelManager>().LevelLost();
+            Destroy(gameObject);
+
+        }
     }
+    
+    
 }
