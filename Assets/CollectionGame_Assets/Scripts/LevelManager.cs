@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour {
         Camera.main.GetComponent<AudioSource>().pitch = 2;
         AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
 
-        Invoke("LoadLevel", 2);
+        Invoke("LoadNextLevel", 2);
     }
 
     public void LevelBeat() {
@@ -65,10 +65,17 @@ public class LevelManager : MonoBehaviour {
         
         Camera.main.GetComponent<AudioSource>().pitch = 2;
         AudioSource.PlayClipAtPoint(gameWonSFX, Camera.main.transform.position);
+
+        if (string.IsNullOrEmpty(nextLevel)) {
+            Invoke("LoadNextLevel", 2);
+        }
     }
 
     void LoadLevel() {
-        SceneManager.LoadScene(nextLevel);
+       SceneManager.LoadScene(nextLevel);
+    }
 
+    void LoadCurrentLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
