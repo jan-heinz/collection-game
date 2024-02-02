@@ -8,7 +8,9 @@ public class LevelManager : MonoBehaviour {
 
     public float levelDuration = 10.0f;
     public Text timerText;
+    public Text gameText;
     public static bool isGameOver = false;
+    public AudioClip gameOverSFX;
     
     float countDown;
     // Start is called before the first frame update
@@ -26,8 +28,7 @@ public class LevelManager : MonoBehaviour {
                 countDown -= Time.deltaTime;
             } else {
                 countDown = 0.0f;
-                isGameOver = true;
-                // LevelLost()
+                LevelLost();
             } 
         } 
         SetTimerText(); 
@@ -39,6 +40,20 @@ public class LevelManager : MonoBehaviour {
 
     void SetTimerText() {
         timerText.text = countDown.ToString("f2");
+    }
 
+    public void LevelLost() {
+        isGameOver = true;
+        gameText.text = "Game Over!";
+        gameText.gameObject.SetActive(true);
+
+        Camera.main.GetComponent<AudioSource>().pitch = 1;
+        AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
+    }
+
+    public void LevelBeat() {
+        isGameOver = true;
+        gameText.text = "You win!";
+        gameText.gameObject.SetActive(true);
     }
 }
