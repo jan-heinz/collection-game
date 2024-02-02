@@ -1,21 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
-    public float levelDuration = 10.0f;
+    public float levelDuration = 5.0f;
     public Text timerText;
     public Text gameText;
     public static bool isGameOver = false;
     public AudioClip gameOverSFX;
     public AudioClip gameWonSFX;
+    public string nextLevel;
     
     float countDown;
     // Start is called before the first frame update
     void Start() {
+        isGameOver = false;
         countDown = levelDuration;
 
         SetTimerText();
@@ -50,6 +54,8 @@ public class LevelManager : MonoBehaviour {
 
         Camera.main.GetComponent<AudioSource>().pitch = 2;
         AudioSource.PlayClipAtPoint(gameOverSFX, Camera.main.transform.position);
+
+        Invoke("LoadLevel", 2);
     }
 
     public void LevelBeat() {
@@ -59,5 +65,10 @@ public class LevelManager : MonoBehaviour {
         
         Camera.main.GetComponent<AudioSource>().pitch = 2;
         AudioSource.PlayClipAtPoint(gameWonSFX, Camera.main.transform.position);
+    }
+
+    void LoadLevel() {
+        SceneManager.LoadScene(nextLevel);
+
     }
 }

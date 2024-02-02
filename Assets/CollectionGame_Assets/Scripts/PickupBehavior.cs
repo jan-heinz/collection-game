@@ -16,7 +16,9 @@ public class PickupBehavior : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        if (LevelManager.isGameOver) {
+            pickupCount = 0;
+        }
     }
 
     void OnCollisionEnter(Collision collision) {
